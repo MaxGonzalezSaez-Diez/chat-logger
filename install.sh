@@ -2,14 +2,14 @@
 set -euo pipefail
 
 # macOS. Edit PYTHON3 if needed, then re-run.
-PYTHON3="/usr/bin/python3"
+PYTHON3="${PYTHON3:-$(command -v python3.11 || command -v python3)}"
 
 if [[ "$(uname -s)" != "Darwin" ]]; then
 	echo "install.sh is macOS only." >&2
 	exit 1
 fi
 
-ROOT="$(cd "$(dirname "$0")" && pwd)"
+ROOT="$(cd "$(dirname "$0")" && pwd -P)"
 PY="${PYTHON3:-$(command -v python3)}"
 if [[ -z "$PY" || ! -x "$PY" ]]; then
 	echo "PYTHON3 must be an executable python3." >&2

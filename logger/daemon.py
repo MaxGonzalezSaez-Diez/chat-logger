@@ -242,6 +242,11 @@ def run_server(
 ) -> int:
     host = host if host is not None else str(_CFG.get("host") or "127.0.0.1")
     port = port if port is not None else int(_CFG.get("port") or 17842)
+    ThreadingHTTPServer.allow_reuse_address = True
+    print(
+        f"[read_chat_gui_logger] binding http://{host}:{port} root={Path(root_path).expanduser()}",
+        flush=True,
+    )
     server = ThreadingHTTPServer((host, port), make_handler(root_path))
     print(f"[read_chat_gui_logger] serving on http://{host}:{port} root={Path(root_path).expanduser()}")
     try:
