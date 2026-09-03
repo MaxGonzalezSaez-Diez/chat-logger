@@ -1,0 +1,4 @@
+# Where chats are written. One JSON file per site per UTC day.
+log_root: ~/Library/Application Support/read_chat_gui/chats
+host: 127.0.0.1
+port: 17842

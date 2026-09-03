@@ -1,0 +1,40 @@
+{
+  "manifest_version": 3,
+  "name": "Read Chat GUI Logger",
+  "version": "0.1.0",
+  "description": "Logs prompt send and assistant final-render events.",
+  "permissions": ["storage"],
+  "host_permissions": [
+    "https://chatgpt.com/*",
+    "https://chat.openai.com/*",
+    "https://gemini.google.com/*",
+    "https://claude.ai/*",
+    "https://*.claude.ai/*",
+    "http://127.0.0.1:17842/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://chatgpt.com/*",
+        "https://chat.openai.com/*",
+        "https://gemini.google.com/*",
+        "https://claude.ai/*",
+        "https://*.claude.ai/*"
+      ],
+      "js": [
+        "src/core/hash.js",
+        "src/core/eventSchema.js",
+        "node_modules/turndown/dist/turndown.js",
+        "src/core/markdownParser.js",
+        "src/adapters/common.js",
+        "src/adapters/chatgpt.js",
+        "src/adapters/gemini.js",
+        "src/adapters/claude.js",
+        "src/core/chatgptState.js",
+        "src/core/transport.js",
+        "src/content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}
